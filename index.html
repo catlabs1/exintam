@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решалы</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Решалус</h1>
+    <div class="container">
+        <div class="container-choose">
+            <div class="choose">
+                <label class="headerCard" for="questionCount">Решать тесты</label>
+                <select id="questionCount">
+                    <option value="5">5 вопросов</option>
+                    <option value="10">10 вопросов</option>
+                    <option value="15">15 вопросов</option>
+                    <option value="20">20 вопросов</option>
+                    <option value="125">125 вопросов</option>
+                </select>
+                <button id="startBtn">Начать тест</button>
+            </div>
+            <div class="choose-again">
+                <p class="headerCard">Отработка ошибок</p>
+                <button id="againBtn">Перейти к тесту</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- <button id="resetBtn">Удалить неверно решенные</button> -->
+
+    <script>
+
+        document.getElementById('resetBtn').addEventListener('click', function() {
+        localStorage.removeItem('incorrectQuestions'); // Удаляет только неправильные вопросы
+        alert('Неправильные ответы очищены!');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const incorrectQuestions = JSON.parse(localStorage.getItem('incorrectQuestions')) || [];
+
+        // if (incorrectQuestions.length > 0) {
+        //     const message = `Вы ошиблись на следующих вопросах: ${incorrectQuestions.join(', ')}`;
+        //     alert(message); // Или отобразить на странице
+        // }
+    });
+    </script>
+    
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            const count = document.getElementById('questionCount').value;
+            window.location.href = `test.html?count=${count}`; // Передаем количество в URL
+        });
+
+        document.getElementById('againBtn').addEventListener('click', function() {
+            const count = document.getElementById('questionCount').value;
+            window.location.href = `practice.html?count=${count}`; // Передаем количество в URL
+        });
+    </script>
+</body>
+</html>
