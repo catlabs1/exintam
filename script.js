@@ -46,6 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
                     });
                 } else if (question.question_type === "stringcheck") {
+                    // Добавляем варианты ответа как обычный текст
+                    question.answers.forEach((answer) => {
+                        questionHTML += `<p class='string-answer'>${answer}</p>`;
+                    });
                     questionHTML += `<input type="text" name="question${index}" placeholder="Введите ваш ответ">`;
                 }
 
